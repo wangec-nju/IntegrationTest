@@ -1,0 +1,12 @@
+name: Must-Have Files Check
+
+runs: 
+  using: "composite"
+  steps:
+    - name: Try to open files
+      shell: bash
+      run: |
+        cat requirements.txt
+        cat pytest.ini
+        cat test/unitest.py
+        cat test/intest.py

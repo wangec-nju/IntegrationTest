@@ -1,0 +1,11 @@
+name: Code Style Check
+
+runs: 
+  using: "composite"
+  steps:
+    - name: Install Black
+      shell: bash
+      run: pip install black
+    - name: Check Code Style Fits PEP8
+      shell: bash
+      run: black --check .

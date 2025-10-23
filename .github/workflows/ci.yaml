@@ -1,0 +1,27 @@
+name: Continuous Integration Workflow
+
+on: 
+  push: 
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy: 
+      matrix:
+        python-version: ['3.10']
+    steps:
+      - uses: actions/checkout@v5
+      - name: Check Must-Have Files
+        uses: ./.github/actions/filecheck
+      - name: Setup Environment
+        uses: ./.github/actions/setup
+        with:
+          python-verison: "3.10"
+      - name: Check Code Style
+        uses: ./.github/actions/stylecheck
+      - name: Run Unit Tests
+        uses: ./.github/actions/unitest
+      - name: Run Integration Tests
+        uses: ./.github/actions/intest

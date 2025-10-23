@@ -1,0 +1,11 @@
+name: Integration Tests
+
+runs: 
+  using: "composite"
+  steps:
+    - name: Setup pytest environment
+      shell: bash
+      run: pip install pytest pytest-cov requests
+    - name: "Run tests with pytest"
+      shell: bash
+      run: pytest test/intest.py
