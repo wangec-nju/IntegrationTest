@@ -12,4 +12,4 @@ class Handler(BaseHTTPRequestHandler):
 
 
 if __name__ == "__main__":
-    HTTPServer(("", 39061), Handler).serve_forever()
+    HTTPServer(("127.0.0.1", 39061), Handler).serve_forever()

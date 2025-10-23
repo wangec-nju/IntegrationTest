@@ -3,6 +3,9 @@ name: Integration Tests
 runs: 
   using: "composite"
   steps:
+    - name: Test Loopback
+      shell: bash
+      run: ping 127.0.0.1
     - name: Setup pytest environment
       shell: bash
       run: pip install pytest pytest-cov requests
