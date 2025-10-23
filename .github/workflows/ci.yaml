@@ -14,14 +14,14 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - name: Check Must-Have Files
-        uses: ./.github/actions/filecheck
+        uses: .github/actions/filecheck
       - name: Setup Environment
-        uses: ./.github/actions/setup
+        uses: .github/actions/setup
         with:
           python-verison: "3.10"
       - name: Check Code Style
-        uses: ./.github/actions/stylecheck
+        uses: .github/actions/stylecheck
       - name: Run Unit Tests
-        uses: ./.github/actions/unitest
+        uses: .github/actions/unitest
       - name: Run Integration Tests
-        uses: ./.github/actions/intest
+        uses: .github/actions/intest
