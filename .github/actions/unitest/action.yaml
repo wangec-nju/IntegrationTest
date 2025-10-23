@@ -8,4 +8,4 @@ runs:
       run: pip install pytest pytest-cov
     - name: "Run tests with pytest"
       shell: bash
-      run: pytest test/unitest.py
+      run: pytest test/unitest.py --cov-fail-under=80
