@@ -10,5 +10,6 @@ class Hello:
 
     def set_name(self, new_name):
         self.__name = new_name
+
     def say(self):
         print(f"Hello {self.__name}!")
