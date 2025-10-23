@@ -2,6 +2,7 @@ import pytest
 import os, json, requests, subprocess
 from enum import Enum
 
+
 class Protocol(Enum):
     HTTP = "http"
     HTTPS = "https"
@@ -10,6 +11,7 @@ class Protocol(Enum):
 class URLNotFoundError(Exception):
     pass
 
+
 protocol = Protocol.HTTP
 host: str = "localhost"
 port: int = 39061
@@ -17,6 +19,7 @@ headers: dict | None = None
 root_path: str = os.path.abspath(".")
 cases_dir: str = os.path.join(root_path, "resources")
 web_service: str = os.path.join(root_path, "src", "web", "server.py")
+
 
 class IntegrationTest:
     @classmethod
@@ -27,15 +30,16 @@ class IntegrationTest:
         self.test("/api/v1/docs", "cases.json")
 
     def test(self, path: str, case_file_name: str):
-        cases: list = self.decode_case_file(
-            os.path.join(cases_dir, case_file_name)
-        )
+        cases: list = self.decode_case_file(os.path.join(cases_dir, case_file_name))
         for case in cases:
-            assert case["response"] == self.request(
-                case["method"],
-                self.get_url(path),
-                request_body=self.decode_json(case["request"]),
-            ).json()
+            assert (
+                case["response"]
+                == self.request(
+                    case["method"],
+                    self.get_url(path),
+                    request_body=self.decode_json(case["request"]),
+                ).json()
+            )
 
     def decode_case_file(self, case_file_path: str):
         with open(case_file_path, "r") as f:
@@ -60,4 +64,4 @@ class IntegrationTest:
             return json.dumps(obj)
 
     def get_url(self, path: str):
-        return f"{protocol.value}://{host}:{port}"+path
+        return f"{protocol.value}://{host}:{port}" + path
