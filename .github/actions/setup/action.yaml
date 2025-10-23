@@ -10,6 +10,8 @@ inputs:
     default: "requirement.txt"
 
 runs: 
+  using: "composite"
+  steps:
   - name: Set up Python ${{ inputs.python-version }}
     uses: actions/setup-python@v5
     with:
