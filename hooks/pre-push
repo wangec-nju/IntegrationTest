@@ -27,9 +27,6 @@ while read local_ref local_sha remote_ref remote_sha; do
         fi
     done
 done
-pip install pytest pytest-cov
-echo === Unit Test ===
 pytest test/unitest.py
-echo === Integration Test ===
 pytest test/intest.py
 exit 0

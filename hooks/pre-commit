@@ -2,7 +2,7 @@
 
 source .git/hooks/config
 source .git/hooks/log
-pip install black
 echo === Black ===
 black --target-version $python_version --extend-exclude $(IFS=" "; echo "${exclude_dir[@]}") .
+echo =============
 exit 0
