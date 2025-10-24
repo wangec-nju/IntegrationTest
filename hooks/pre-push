@@ -18,7 +18,7 @@ while read local_ref local_sha remote_ref remote_sha; do
     done
 
     for allowed_branch in "${allowed_branches[@]}"; do
-        if [[ "$allowed_branch" == *"*"* && "$target_branch" != ${allowed_branch/\*/}* ]]; then
+        if [[ "$allowed_branch" == *"*"* && "$target_branch" != ${allowed_branches/\*//}* ]]; then
             error "推送到Github的分支名不符合标准。"
             tips "请按照协作文档推送到有合法名称的Github分支。"
             tips "协作文档请参照${github_cooperation_docs}"
