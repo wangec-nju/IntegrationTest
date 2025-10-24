@@ -25,7 +25,7 @@ class IntegrationTest:
     @classmethod
     def setup_class(self):
         subprocess.Popen(["python", web_service])
-        time.sleep(10)
+        time.sleep(5)
 
     def test_get_docs(self):
         self.test("/api/v1/docs", "cases.json")
