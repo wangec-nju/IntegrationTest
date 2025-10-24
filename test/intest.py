@@ -81,4 +81,6 @@ class IntegrationTest:
 
     def get_url(self, path: str):
         # 这个是为了标准化生成需要访问的URL
+        if path[0] != "/":
+            path = "/" + path
         return f"{protocol.value}://{host}:{port}" + path
