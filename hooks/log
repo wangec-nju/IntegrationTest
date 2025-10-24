@@ -1,0 +1,22 @@
+#!/bin/bash
+
+log() {
+    level=$(echo $1 | sed 's/[a-z]/\U&/g')
+    echo "[NOVA ${level}] "$2
+}
+
+tips() {
+    log tips $1
+}
+
+info() {
+    log info $1
+}
+
+warn() {
+    log warn $1
+}
+
+error() {
+    log error $1
+}
