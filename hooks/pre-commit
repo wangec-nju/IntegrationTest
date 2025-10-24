@@ -3,6 +3,6 @@
 source .git/hooks/config
 source .git/hooks/log
 echo === Black ===
-black --target-version $python_version --extend-exclude $(IFS=" "; echo "${exclude_dir[@]}") .
+black --target-version $python_version --extend-exclude $(IFS=" "; echo "${exclude_dir[@]}") --check .
 echo =============
 exit 0
