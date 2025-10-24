@@ -1,0 +1,32 @@
+#!/bin/bash
+
+source .git/hooks/config
+source .git/hooks/log
+
+while read local_ref local_sha remote_ref remote_sha; do
+    target_branch=$(echo "$remote_ref" | sed 's/refs\/heads\///')
+
+    for protected_branch in "${protected_branches[@]}"; do
+        if [[ "$target_branch" == $protected_branch ]] || 
+           [[ "$protected_branch" == *"*"* && "$target_branch" == ${protected_branch/\*/}* ]]; then
+            error "禁止直接向\"${protected_branch}\"分支推送代码。"
+            tips "请按照协作文档向Github推送工作分支后发起Pull-Request。"
+            tips "协作文档请参照${github_cooperation_docs}"
+            info "push流程终止，代码没有被推送。"
+            exit 1
+        fi
+    done
+
+    for allowed_branch in "${allowed_branches[@]}"; do
+        if [[ "$allowed_branch" == *"*"* && "$target_branch" != ${allowed_branches/\*//}* ]]; then
+            error "推送到Github的分支名不符合标准。"
+            tips "请按照协作文档推送到有合法名称的Github分支。"
+            tips "协作文档请参照${github_cooperation_docs}"
+            info "push流程终止，代码没有被推送。"
+            exit 1
+        fi
+    done
+done
+pytest test/unitest.py
+pytest test/intest.py
+exit 0

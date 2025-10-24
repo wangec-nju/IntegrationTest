@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# global
+python_version="py310"
+
+# pre-commit
+allowed_message_prefix=("feat" "fix" "docs" "style" "refactor" "test")
+exclude_dir=(".github/")
+
+# pre-push
+protected_branches=("main")
+allowed_branches=("feature/*" "fix/*" "docs/*")
+
+# docs
+github_cooperation_docs="https://nova.yuque.com/ph25ri/ua1c3q/btag7pk04rf77y94"
