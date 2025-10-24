@@ -3,7 +3,9 @@ import os, json, time, requests, subprocess
 from enum import Enum
 
 # 这个文件专门存放接口测试类。
-#一般来讲，大家只需要配置Configuration的变量，写好样例JSON，调用test()测试就行。
+# 一般来讲，大家只需要配置Configuration的变量，写好样例JSON，调用test()测试就行。
+# 关于怎么写样例JSON，请看根目录下的README.md
+
 
 class Protocol(Enum):
     HTTP = "http"
@@ -13,14 +15,19 @@ class Protocol(Enum):
 class URLNotFoundError(Exception):
     pass
 
+
 # Configuration
 protocol = Protocol.HTTP  # 服务器选用的协议，可以选择HTTP和HTTPS
 host: str = "localhost"  # 服务器的主机名或IP地址
 port: int = 39061  # 服务器开放RESTful API的端口
-headers: dict | None = None  # 请求的时候需要附加的HEADERS
-root_path: str = os.path.abspath(".")  # 工作区根目录的绝对路径，一般指src/、test/等文件夹的父目录
-cases_dir: str = os.path.join(root_path, "resources")  # 样例JSON文件存放目录的绝对路径
-web_service: str = os.path.join(root_path, "src", "web", "server.py")  # 服务器文件的绝对路径
+# 请求的时候需要附加的HEADERS
+headers: dict | None = None
+# 工作区根目录的绝对路径，一般指src/、test/等文件夹的父目录
+root_path: str = os.path.abspath(".")
+# 样例JSON文件存放目录的绝对路径
+cases_dir: str = os.path.join(root_path, "resources")
+# 服务器文件的绝对路径
+web_service: str = os.path.join(root_path, "src", "web", "server.py")
 
 
 class IntegrationTest:
