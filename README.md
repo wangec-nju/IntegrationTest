@@ -11,4 +11,4 @@
 - requriements.txt 记录依赖的文件
 ## 怎么写样例JSON文件
 样例JSON文件的最大的结构一定是一个列表结构，其中存储了多个对象结构，每个结构有method（代表HTTP请求方法）、request（代表请求体）、response（代表期望的返回体）
-具体的例子请看 resources/cases.json
+具体的例子请看 resources/cases.json.
